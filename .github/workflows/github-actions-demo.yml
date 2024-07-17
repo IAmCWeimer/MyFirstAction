@@ -21,7 +21,7 @@ jobs:
       uses: actions/checkout@v3
 
     - name: Output the name of the event that triggered the workflow
-      run: echo "Event Name: ${{ github.event_name }}"
+      run:  echo "🎉 The job was triggered by event: ${{ github.event_name }}"
 
     - name: Output the name of the branch that the repository is currently referencing
       run: echo "Branch Name: ${{ github.ref_name }}"
