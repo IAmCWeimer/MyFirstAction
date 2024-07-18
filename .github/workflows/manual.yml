@@ -16,38 +16,39 @@ jobs:
     needs: Build
     environment: Test
     steps:
-      - run echo "Testing..."
-
-Load_Test:
-  runs-on: ubuntu-latest
-  if: github.event_name == 'workflow_dispatch'
-  needs: Build
-  environment: Load_Test
-  steps: 
+      - run: |
+          echo 'Testing...'
+          
+  Load_Test:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'workflow_dispatch'
+    needs: Build
+    environment: Load_Test
+    steps: 
     - run: |
         echo "Testing..."
         sleep 15
-
-Production:
-  runs-on: ubuntu-latest
-  needs: [Test, Load_Test]
-  environment: 
-    name: Production
-    url: https://writeabout.net
-  if: github.event.inputs.environment == 'Production'
-  steps:
-    - run: |
-        echo "Step 1 deplying..."
-        sleep 10
-    - run: |
-       echo "Step 2 deplying..."
-       sleep 10
-    - run: |
-       echo "Step 3 deplying..."
-       sleep 10
-    - run: |
-        echo "Step 4 deplying..."
-        sleep 10
-    - run: |
-        echo "Step 5 deplying..."
-        sleep 10
+        
+  Production:
+     runs-on: ubuntu-latest
+     needs: [Test, Load_Test]
+     environment: 
+       name: Production
+       url: https://writeabout.net
+     if: github.event.inputs.environment == 'Production'
+     steps:
+      - run: |
+         echo "Step 1 deplying..."
+         sleep 10
+      - run: |
+         echo "Step 2 deplying..."
+         sleep 10
+      - run: |
+         echo "Step 3 deplying..."
+         sleep 10
+      - run: |
+         echo "Step 4 deplying..."
+         sleep 10
+      - run: |
+         echo "Step 5 deplying..."
+         sleep 10
